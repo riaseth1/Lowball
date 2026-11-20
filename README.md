@@ -3,7 +3,7 @@
 A B2B negotiation AI for manufacturers. A manufacturer has thousands of customers who
 each negotiate differently — some grind hard, some agree fast, some stall. The agent
 negotiates with each one, **remembers every customer**, and adapts its approach from
-that memory. Built at HackNation (tracks: **haggle · compare · call**) with [Aryan Motgi](https://github.com/aryanmotgi) and [@ssmoney1](https://github.com/ssmoney1).
+that memory. Built at HackNation (tracks: **haggle · compare · call**).
 
 The differentiator is **memory**: a Kuzu graph + native vector index in one engine.
 Everything connects — customers, deals, calls, tactics — and that graph makes the agent
