@@ -1,9 +1,9 @@
-# Loomhaus — memory-driven negotiation agent (manufacturer side)
+# Lowball — a negotiation agent that remembers every customer
 
 A B2B negotiation AI for manufacturers. A manufacturer has thousands of customers who
 each negotiate differently — some grind hard, some agree fast, some stall. The agent
 negotiates with each one, **remembers every customer**, and adapts its approach from
-that memory. Built for HackNation (tracks: **haggle · compare · call**).
+that memory. Built at HackNation (tracks: **haggle · compare · call**) with [Aryan Motgi](https://github.com/aryanmotgi) and [@ssmoney1](https://github.com/ssmoney1).
 
 The differentiator is **memory**: a Kuzu graph + native vector index in one engine.
 Everything connects — customers, deals, calls, tactics — and that graph makes the agent
@@ -79,19 +79,11 @@ customer changes, so the outcome differences come purely from adaptation:
 Guardrails are enforced in code, not left to the model: never quote below floor,
 always propose a next step, escalate on declining outcomes.
 
-## Before the demo
-- **Swap the embedder** — `memory/embeddings.py` is a stub (deterministic, not semantic).
-  `get_context` (graph) is fully real now; `search_patterns` (vectors) is noise until you
-  drop in `all-MiniLM-L6-v2`. `EMBED_DIM=384` already matches it → no schema change.
-- **Add `OPENAI_API_KEY`** to make the reasoning model-generated (mock proves the logic).
+## Known limitations
+- `memory/embeddings.py` is a deterministic stub, so vector search isn't semantic yet. Swapping in `all-MiniLM-L6-v2` needs no schema change (`EMBED_DIM=384` already matches).
+- Without an `OPENAI_API_KEY`, an offline mock generates the reasoning. It proves the logic but isn't model-generated.
 
 ## Status
-- ✅ memory layer, negotiation arena, guardrails, escalation, scoring, both web views
-- ✅ 25-check smoke test passing on the offline mock
-- ⏳ live OpenAI call shape unverified (needs a key) · ElevenLabs voice call (track 3)
-
-## Branches
-Stacked feature branches — merge order memory → arena → frontend:
-```
-feat/memory-layer  →  feat/negotiation-arena  →  feat/frontend-dashboard
-```
+- Working: memory layer, negotiation arena, guardrails, escalation, scoring, both web views
+- Tested: 25-check smoke test passing on the offline mock
+- Not yet verified: live OpenAI calls (needs a key) and the ElevenLabs voice call (track 3)
